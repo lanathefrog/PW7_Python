@@ -1,16 +1,3 @@
-def input_text():
-    """
-    Inputs text from the console.
-
-    Examples:
-        >>> input_text()
-        'Hello, World!'
-
-    Returns:
-        text (str): The text input from the console.
-    """
-    return input("Enter text: ")
-
 def read_file_builtin(file_path):
     """
     Reads text from a file using built-in Python capabilities.
@@ -28,8 +15,11 @@ def read_file_builtin(file_path):
     Raises:
         FileNotFoundError: If the file does not exist.
     """
-    with open(file_path, 'r') as file:
-        return file.read()
+    try:
+        with open(file_path, 'r') as file:
+            return file.read()
+    except FileNotFoundError:
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
 
 def read_file_pandas(file_path):
     """
@@ -53,5 +43,7 @@ def read_file_pandas(file_path):
     try:
         df = pd.read_csv(file_path)
         return df.to_string()
+    except FileNotFoundError:
+        raise FileNotFoundError(f"The file {file_path} does not exist.")
     except pd.errors.EmptyDataError:
         return 'Empty DataFrame\nColumns: []\nIndex: []'
