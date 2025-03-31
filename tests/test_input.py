@@ -7,7 +7,7 @@ class TestInputFunctions(unittest.TestCase):
 # successfull test (reading from a file .txt that exists)
     def test_read_file_builtin_success(self):
         content = read_file_builtin('test_builtin.txt')
-        self.assertEqual(content, 'Hello, World!')
+        self.assertEqual(content, 'I love NaUKMA <3')
 
 # test for a file that does not exist
     def test_read_file_builtin_file_not_found(self):
