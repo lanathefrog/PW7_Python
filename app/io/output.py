@@ -10,7 +10,6 @@ def output_text(text):
         text (str): The text to output.
     """
     print(text)
-
 def write_file_builtin(file_path, text):
     """
     Writes text to a file using built-in Python capabilities.
@@ -25,5 +24,10 @@ def write_file_builtin(file_path, text):
     Raises:
         IOError: If the file cannot be written.
     """
-    with open(file_path, 'a') as file:
-        file.write(text + '\n')
+    try:
+        with open(file_path, 'a') as file:
+            file.write(text + '\n')
+            print(f"Successfully wrote to {file_path}")
+    except IOError as e:
+        print(f"Failed to write to {file_path}: {e}")
+        raise IOError(f"Cannot write to file {file_path}: {e}")
